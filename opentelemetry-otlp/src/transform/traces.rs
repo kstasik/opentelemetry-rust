@@ -63,7 +63,7 @@ impl From<SpanData> for ResourceSpans {
                         .iter()
                         .map(|a| StringKeyValue {
                             key: "asd".into(),
-                            name: "testing".into()
+                            value: "testing".into()
                             ..Default::default()
                         })
                         .collect()
