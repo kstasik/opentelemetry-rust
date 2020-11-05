@@ -136,6 +136,7 @@ pub mod api;
 pub mod exporter;
 pub mod global;
 pub mod sdk;
+pub mod context;
 
 #[cfg(test)]
 pub mod testing;
