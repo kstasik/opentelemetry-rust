@@ -43,11 +43,13 @@ impl From<Value> for AnyValue {
         match value {
             Value::Bool(val) => any_value.set_bool_value(val),
             Value::I64(val) => any_value.set_int_value(val),
+            Value::U64(val) => any_value.set_int_value(val),
             Value::F64(val) => any_value.set_double_value(val),
             Value::String(val) => any_value.set_string_value(val.into_owned()),
             Value::Array(array) => any_value.set_array_value(match array {
                 Array::Bool(vals) => array_into_proto(vals),
                 Array::I64(vals) => array_into_proto(vals),
+                Array::U64(vals) => array_into_proto(vals),
                 Array::F64(vals) => array_into_proto(vals),
                 Array::String(vals) => array_into_proto(vals),
             }),
