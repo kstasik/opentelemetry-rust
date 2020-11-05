@@ -56,6 +56,7 @@ impl From<Link> for Span_Link {
 
 impl From<SpanData> for ResourceSpans {
     fn from(source_span: SpanData) -> Self {
+        println!("span test: {:?}", source_span.resource);
         ResourceSpans {
             resource: SingularPtrField::from(Some(Resource {
                 attributes: RepeatedField::from_vec(
