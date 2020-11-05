@@ -186,7 +186,7 @@ pub enum Value {
     /// i64 values
     I64(i64),
     /// i64 values
-    U64(i64),
+    U64(u64),
     /// f64 values
     F64(f64),
     /// String values
