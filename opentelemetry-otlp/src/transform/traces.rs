@@ -1,4 +1,4 @@
-use crate::proto::{resource::Resource, common::KeyValue, common:AnyValue};
+use crate::proto::{resource::Resource, common::KeyValue, common::AnyValue};
 use crate::proto::trace::{
     InstrumentationLibrarySpans, ResourceSpans, Span, Span_Event, Span_Link, Span_SpanKind, Status,
     Status_StatusCode,
