@@ -3,7 +3,7 @@ use crate::proto::trace::{
     InstrumentationLibrarySpans, ResourceSpans, Span, Span_Event, Span_Link, Span_SpanKind, Status,
     Status_StatusCode,
 };
-use crate::transform::common::{to_nanos, Attributes};
+use crate::transform::common::{to_nanos, Attributes, KeyValue};
 use opentelemetry::exporter::trace::SpanData;
 use opentelemetry::trace::{Link, SpanKind, StatusCode};
 use protobuf::reflect::ProtobufValue;
@@ -61,7 +61,7 @@ impl From<SpanData> for ResourceSpans {
                 attributes: RepeatedField::from_vec(vec![
                     source_span
                         .resource
-                        .attributes
+                        .attrs
                         .into_iter()
                         .map(|a| KeyValue {
                             key: "asd".into(),
