@@ -61,8 +61,8 @@ impl From<SpanData> for ResourceSpans {
                 attributes: RepeatedField::from_vec(vec![
                     source_span
                         .resource
-                        .attrs
-                        .into_iter()
+                        .get_attributes()
+                        .iter()
                         .map(|a| KeyValue {
                             key: "asd".into(),
                             name: "testing".into()
