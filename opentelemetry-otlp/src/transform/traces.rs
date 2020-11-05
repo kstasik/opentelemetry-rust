@@ -1,9 +1,9 @@
-use crate::proto::resource::Resource;
+use crate::proto::{resource::Resource, common::StringKeyValue};
 use crate::proto::trace::{
     InstrumentationLibrarySpans, ResourceSpans, Span, Span_Event, Span_Link, Span_SpanKind, Status,
     Status_StatusCode,
 };
-use crate::transform::common::{to_nanos, Attributes, StringKeyValue};
+use crate::transform::common::{to_nanos, Attributes};
 use opentelemetry::exporter::trace::SpanData;
 use opentelemetry::trace::{Link, SpanKind, StatusCode};
 use protobuf::reflect::ProtobufValue;
