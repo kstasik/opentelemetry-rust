@@ -224,7 +224,6 @@ impl From<Value> for String {
         match value {
             Value::Bool(value) => value.to_string(),
             Value::I64(value) => value.to_string(),
-            Value::U64(value) => value.to_string(),
             Value::F64(value) => value.to_string(),
             Value::String(value) => value.into_owned(),
             Value::Array(value) => value.to_string(),
