@@ -1,4 +1,4 @@
-use crate::proto::{resource::Resource, common::StringKeyValue};
+use crate::proto::{resource::Resource, common::KeyValue};
 use crate::proto::trace::{
     InstrumentationLibrarySpans, ResourceSpans, Span, Span_Event, Span_Link, Span_SpanKind, Status,
     Status_StatusCode,
@@ -61,7 +61,7 @@ impl From<SpanData> for ResourceSpans {
                 attributes: RepeatedField::from_vec(
                     source_span.resource
                         .iter()
-                        .map(|a| StringKeyValue {
+                        .map(|a| KeyValue {
                             key: "asd".into(),
                             value: "testing".into()
                             ..Default::default()
