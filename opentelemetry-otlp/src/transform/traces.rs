@@ -61,10 +61,11 @@ impl From<SpanData> for ResourceSpans {
                 attributes: RepeatedField::from_vec(
                     source_span.resource
                         .iter()
-                        .map(|a| KeyValue {
-                            key: "asd".into(),
-                            value: SingularPtrField::some(String::from("testing")),
-                            ..Default::default()
+                        .map(|api_kv| {
+                            let mut kv: KeyValue = KeyValue::new();
+                            kv.set_key(api_kv.key.as_str().to_string());
+                            kv.set_value(api_kv.value.into());
+                            kv
                         })
                         .collect()
                 ),
