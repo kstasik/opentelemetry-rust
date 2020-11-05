@@ -59,7 +59,7 @@ impl From<SpanData> for ResourceSpans {
         ResourceSpans {
             resource: SingularPtrField::from(Some(Resource {
                 attributes: RepeatedField::from_vec(vec![
-                    *(source_span.resource.get_attributes())
+                    *(source_span.resource).get_attributes()
                         .iter()
                         .map(|a| KeyValue {
                             key: "asd".into(),
