@@ -35,6 +35,14 @@ impl Key {
             value: Value::I64(value),
         }
     }
+    
+    /// Create a `KeyValue` pair for `u64` values.
+    pub fn u64(&self, value: u64) -> KeyValue {
+        KeyValue {
+            key: self.clone(),
+            value: Value::U64(value),
+        }
+    }
 
     /// Create a `KeyValue` pair for `f64` values.
     pub fn f64(&self, value: f64) -> KeyValue {
@@ -94,6 +102,8 @@ pub enum Array {
     /// Array of bools
     Bool(Vec<Option<bool>>),
     /// Array of integers
+    U64(Vec<Option<u64>>),
+    /// Array of integers
     I64(Vec<Option<i64>>),
     /// Array of floats
     F64(Vec<Option<f64>>),
@@ -106,6 +116,7 @@ impl fmt::Display for Array {
         match self {
             Array::Bool(values) => display_array_str(&values, fmt),
             Array::I64(values) => display_array_str(&values, fmt),
+            Array::U64(values) => display_array_str(&values, fmt),
             Array::F64(values) => display_array_str(&values, fmt),
             Array::String(values) => {
                 write!(fmt, "[")?;
@@ -155,10 +166,12 @@ macro_rules! into_array {
 
 into_array!(
     (Vec<Option<bool>>, Array::Bool, t, t),
-    (Vec<Option<i64>>, Array::I64, t, t),
     (Vec<Option<f64>>, Array::F64, t, t),
+    (Vec<Option<u64>>, Array::U64, t, t),
+    (Vec<Option<i64>>, Array::I64, t, t),
     (Vec<Option<Cow<'static, str>>>, Array::String, t, t),
     (Vec<bool>, Array::Bool, t, t.into_iter().map(Some).collect()),
+    (Vec<u64>, Array::U64, t, t.into_iter().map(Some).collect()),
     (Vec<i64>, Array::I64, t, t.into_iter().map(Some).collect()),
     (Vec<f64>, Array::F64, t, t.into_iter().map(Some).collect()),
     (Vec<Cow<'static, str>>, Array::String, t, t.into_iter().map(Some).collect()),
@@ -172,6 +185,8 @@ pub enum Value {
     Bool(bool),
     /// i64 values
     I64(i64),
+    /// i64 values
+    U64(i64),
     /// f64 values
     F64(f64),
     /// String values
@@ -198,6 +213,7 @@ macro_rules! from_values {
 
 from_values!(
     (bool, Value::Bool);
+    (u64, Value::U64);
     (i64, Value::I64);
     (f64, Value::F64);
     (Cow<'static, str>, Value::String);
@@ -224,6 +240,7 @@ impl From<Value> for String {
         match value {
             Value::Bool(value) => value.to_string(),
             Value::I64(value) => value.to_string(),
+            Value::U64(value) => value.to_string(),
             Value::F64(value) => value.to_string(),
             Value::String(value) => value.into_owned(),
             Value::Array(value) => value.to_string(),
@@ -238,6 +255,7 @@ impl From<&Value> for String {
         match value {
             Value::Bool(value) => value.to_string(),
             Value::I64(value) => value.to_string(),
+            Value::U64(value) => value.to_string(),
             Value::F64(value) => value.to_string(),
             Value::String(value) => value.to_string(),
             Value::Array(value) => value.to_string(),
