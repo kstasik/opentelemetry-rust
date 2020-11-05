@@ -65,7 +65,10 @@ impl From<SpanData> for ResourceSpans {
                         .map(|(key, value)| {
                             let mut kv: KeyValue = KeyValue::new();
                             kv.set_key(key.as_str().to_string());
-                            kv.set_value(value.into());
+                            
+                            let mut v: AnyValue = AnyValue::new();
+                            v.set_string_value(value.into());
+                            kv.set_value(v);
                             kv
                         })
                         .collect()
