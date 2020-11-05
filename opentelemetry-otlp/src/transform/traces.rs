@@ -58,7 +58,18 @@ impl From<SpanData> for ResourceSpans {
     fn from(source_span: SpanData) -> Self {
         ResourceSpans {
             resource: SingularPtrField::from(Some(Resource {
-                attributes: Default::default(),
+                attributes: RepeatedField::from_vec(vec![
+                    source_span
+                        .resource
+                        .attributes
+                        .into_iter()
+                        .map(|a| KeyValue {
+                            key: "asd".into(),
+                            name: "testing".into()
+                            ..Default::default()
+                        })
+                        .collect()
+                ]),
                 dropped_attributes_count: 0,
                 ..Default::default()
             })),
