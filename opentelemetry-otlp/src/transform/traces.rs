@@ -1,4 +1,4 @@
-use crate::proto::{resource::Resource, common::KeyValue};
+use crate::proto::{resource::Resource, common::KeyValue, common:AnyValue};
 use crate::proto::trace::{
     InstrumentationLibrarySpans, ResourceSpans, Span, Span_Event, Span_Link, Span_SpanKind, Status,
     Status_StatusCode,
@@ -63,8 +63,11 @@ impl From<SpanData> for ResourceSpans {
                         .iter()
                         .map(|api_kv| {
                             let mut kv: KeyValue = KeyValue::new();
+                            let mut v: AnyValue = AnyValue::new();
+                            v.set_string_value(String::from(api_kv.1));
+                            
                             kv.set_key(api_kv.0.as_str().to_string());
-                            kv.set_value(String::from(api_kv.1));
+                            kv.set_value(v);
                             kv
                         })
                         .collect()
