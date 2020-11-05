@@ -50,8 +50,7 @@ impl From<Value> for AnyValue {
                 Array::I64(vals) => array_into_proto(vals),
                 Array::F64(vals) => array_into_proto(vals),
                 Array::String(vals) => array_into_proto(vals),
-            }),
-            _ => {},
+            })
         };
 
         any_value
