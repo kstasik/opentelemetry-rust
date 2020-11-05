@@ -63,8 +63,8 @@ impl From<SpanData> for ResourceSpans {
                         .iter()
                         .map(|api_kv| {
                             let mut kv: KeyValue = KeyValue::new();
-                            kv.set_key(api_kv.key.as_str().to_string());
-                            kv.set_value(api_kv.value.into());
+                            kv.set_key(api_kv.0.as_str().to_string());
+                            kv.set_value(api_kv.1.into());
                             kv
                         })
                         .collect()
