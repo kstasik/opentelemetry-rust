@@ -63,7 +63,7 @@ impl From<SpanData> for ResourceSpans {
                         .iter()
                         .map(|a| KeyValue {
                             key: "asd".into(),
-                            value: "testing".into()
+                            value: SingularPtrField::some("testing".into()),
                             ..Default::default()
                         })
                         .collect()
